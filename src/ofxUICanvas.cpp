@@ -778,6 +778,13 @@ void ofxUICanvas::mousePressed(int x, int y, int button) {
             if((*it)->isVisible()) {
                 (*it)->mousePressed(x, y, button);
             }
+			
+			// fix #b7a0f07
+			// don't notify the widgets below about mouse event
+			if( (*it)->getKind() == OFX_UI_WIDGET_DROPDOWNLIST ){
+				ofxUIDropDownList* ddl = (ofxUIDropDownList*) *it;
+				if( ddl->isOpen() ) break;
+			}
         }
     }
     else {
