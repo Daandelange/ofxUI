@@ -42,7 +42,11 @@ public:
     bool isMinified();
     void toggleMinified();
     ofxUILabel *getCanvasTitle();
+    bool didHitHeaderWidgets(float x, float y); 
     void autoSizeToFitWidgets(); 
+
+    virtual void keyPressed(int key);
+    virtual void keyReleased(int key);
 
 #ifdef OFX_UI_TARGET_TOUCH
     virtual void touchDown(float x, float y, int id);
@@ -71,6 +75,7 @@ protected:
     vector<ofxUIWidget *> headerWidgets;
     
     ofxUIVec2f hitPoint;
+    ofxUIVec2f lastPosition;
     float deltaTime;
     float lastHitTime;
     bool bIsMinified;
